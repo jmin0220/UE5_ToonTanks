@@ -22,3 +22,7 @@ void ATank::BeginPlay()
 void ATank::Tick(float DeltaTime)
 {
 }
+
+void ATank::Move(float _value)
+{
+}

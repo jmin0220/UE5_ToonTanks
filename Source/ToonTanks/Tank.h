@@ -32,4 +32,5 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Components", meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* SpringArmCom_;
 
+	void Move(float _value);
 };
