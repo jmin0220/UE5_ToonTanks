@@ -21,8 +21,33 @@ public:
 
 protected:
 	void RotateTurret(FVector _LookAtTarget);
+	void Fire();
 
-private:
+	
+	// 루트 컴포넌트
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Infomation", meta = (AllowPrivateAccess = "true"))
+	class UCapsuleComponent* CapsuleCom_;
+
+	// 탱크 하체
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Infomation", meta = (AllowPrivateAccess = "true"))
+	UStaticMeshComponent* BaseMesh_;
+
+	// 탱크 상체
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Infomation", meta = (AllowPrivateAccess = "true"))
+	UStaticMeshComponent* TurretMesh_;
+
+	// 총알을 생성할 포인트
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Infomation", meta = (AllowPrivateAccess = "true"))
+	USceneComponent* ProjectileSpawnPoint_;
+
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Positions", meta = (AllowPrivateAccess = "true"))
+	float CapsulePosition_;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Positions", meta = (AllowPrivateAccess = "true"))
+	float ProjectileSpawnPointPosition_;
+
+
 	/*
 		// VisibleAnywhere 보이지만 편집할 수 없음
 		// BlueprintReadWrite 블루프린트 이벤트 그래프에서 Get, Set을 모두 할 수 있음
@@ -40,27 +65,4 @@ private:
 		UPROPERTY(VisibleInstanceOnly)
 		int32 VisibleInstanceOnlyInt = 12;
 	*/
-	
-
-
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Infomation", meta = (AllowPrivateAccess = "true"))
-	class UCapsuleComponent* CapsuleCom_;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Infomation", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* BaseMesh_;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Infomation", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* TurretMesh_;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Infomation", meta = (AllowPrivateAccess = "true"))
-	USceneComponent* ProjectileSpawnPoint_;
-
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Positions", meta = (AllowPrivateAccess = "true"))
-	float CapsulePosition_;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Positions", meta = (AllowPrivateAccess = "true"))
-	float ProjectileSpawnPointPosition_;
-
 };

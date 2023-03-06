@@ -25,6 +25,7 @@ void ATank::BeginPlay()
 	PlayerController_ = Cast<APlayerController>(GetController());
 }
 
+
 void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -47,6 +48,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	// 프로젝트 세팅에서 설정한 입력 값을 Move함수와 바인딩
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
+	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ATank::Fire);
 }
 
 void ATank::Move(float _value)
