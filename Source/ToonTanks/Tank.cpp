@@ -6,6 +6,7 @@
 #include <GameFramework/SpringArmComponent.h>
 #include <Components/InputComponent.h>
 #include <Kismet/GameplayStatics.h>
+#include <DrawDebugHelpers.h>
 
 ATank::ATank()
 {
@@ -20,11 +21,23 @@ ATank::ATank()
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
+
+	PlayerController_ = Cast<APlayerController>(GetController());
 }
 
 void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (PlayerController_)
+	{
+		FHitResult HitResult;
+		PlayerController_->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
+
+		DrawDebugSphere(this->GetWorld(), HitResult.ImpactPoint, 50.f, 20, FColor::Red, false, -1.f);
+
+		RotateTurret(HitResult.ImpactPoint);
+	}
 }
 
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -33,14 +46,24 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	// 프로젝트 세팅에서 설정한 입력 값을 Move함수와 바인딩
 	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
+	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
 }
 
 void ATank::Move(float _value)
 {
-	UE_LOG(LogTemp, Display, TEXT("Move Value >> %f"), _value);
-
 	FVector DeltaLocation(0.f);
 	DeltaLocation.X = MoveSpeed_ * _value * UGameplayStatics::GetWorldDeltaSeconds(this);
 
-	AddActorLocalOffset(DeltaLocation);
+	AddActorLocalOffset(DeltaLocation, true);	
+}
+
+void ATank::Turn(float _value)
+{
+	FVector DeltaLocation(0.f);
+	DeltaLocation.X = TurnSpeed_ * _value * UGameplayStatics::GetWorldDeltaSeconds(this);
+
+	FRotator DeltaRotator(0.f);
+	DeltaRotator.Yaw = TurnSpeed_ * _value * UGameplayStatics::GetWorldDeltaSeconds(this);
+
+	AddActorLocalRotation(DeltaRotator, true);
 }

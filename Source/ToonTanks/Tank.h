@@ -39,5 +39,13 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "Speed Variable", meta = (AllowPrivateAccess = "true"))
 	float MoveSpeed_ = 400.f;
 
+	// 회전속도
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "Speed Variable", meta = (AllowPrivateAccess = "true"))
+	float TurnSpeed_ = 30.f;
+
 	void Move(float _value);
+
+	void Turn(float _value);
+
+	APlayerController* PlayerController_;
 };
