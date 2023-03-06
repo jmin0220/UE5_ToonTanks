@@ -46,9 +46,6 @@ private:
 	*/
 	
 
-	// 이동속도
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "Speed Variable", meta = (AllowPrivateAccess = "true"))
-	float MoveSpeed_ = 400.0f;
 
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Infomation", meta = (AllowPrivateAccess = "true"))

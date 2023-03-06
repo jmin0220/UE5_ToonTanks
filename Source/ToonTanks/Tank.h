@@ -25,12 +25,19 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// Called to bind functionality to input
+	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* CameraCom_;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Components", meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* SpringArmCom_;
+
+	// 이동속도
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "Speed Variable", meta = (AllowPrivateAccess = "true"))
+	float MoveSpeed_ = 400.f;
 
 	void Move(float _value);
 };
