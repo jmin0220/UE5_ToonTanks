@@ -47,6 +47,10 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Component Positions", meta = (AllowPrivateAccess = "true"))
 	float ProjectileSpawnPointPosition_;
 
+	// AProjectile타입의 클래스만 사용가능하게 하는 탬플릿클래스
+	// AProjectile을 그냥 사용하면 파생클래스도 선언이 가능하지만 TSubclassOf는 AProjectile만 사용할 수 있게 제한됨
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "Component Positions", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class AProjectile> Projectile_;
 
 	/*
 		// VisibleAnywhere 보이지만 편집할 수 없음
