@@ -36,9 +36,14 @@ void ATower::HandleDestruction()
 
 void ATower::CheckFireCondition()
 {
+	if (Tank_ == nullptr)
+	{
+		return;
+	}
+
 	float Distance = FVector::Dist(GetActorLocation(), Tank_->GetActorLocation());
 
-	if (CheckRangeToTank())
+	if (Tank_->Alive_ && CheckRangeToTank())
 	{
 		Fire();
 	}

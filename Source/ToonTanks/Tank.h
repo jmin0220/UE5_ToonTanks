@@ -35,6 +35,9 @@ public:
 		return PlayerController_;
 	}
 
+	// 플레이어가 유요한가를 체크
+	bool Alive_ = true;
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* CameraCom_;

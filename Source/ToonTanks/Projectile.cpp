@@ -47,11 +47,11 @@ void AProjectile::OnHit(UPrimitiveComponent* _HitCom, AActor* _Other, UPrimitive
 {
 
 	// ABasePawn::Fire()에서 설정한 Owner를 취득
-	auto MyOwner = GetOwner();
+	AActor* MyOwner = GetOwner();
 	if (MyOwner == nullptr) return;
 
-	auto tmpOwnerInstigator = MyOwner->GetInstigatorController();
-	auto DamageTypeClass = UDamageType::StaticClass();
+	AController* tmpOwnerInstigator = MyOwner->GetInstigatorController();
+	UClass* DamageTypeClass = UDamageType::StaticClass();
 
 
 	if (_Other != this && _Other != MyOwner && _Other != nullptr)

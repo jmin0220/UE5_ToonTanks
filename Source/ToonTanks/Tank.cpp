@@ -52,6 +52,7 @@ void ATank::HandleDestruction()
 	SetActorHiddenInGame(true);
 	// Tick함수 무효화
 	SetActorTickEnabled(false);
+	Alive_ = false;
 }
 
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
