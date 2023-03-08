@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Projectile.h"
 #include <Kismet/GameplayStatics.h>
+#include <Camera/CameraShakeBase.h>
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -37,7 +38,18 @@ void ABasePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void ABasePawn::HandleDestruction()
 {
-	// 이펙트 및 사운드효과 발생
+	if (DeathParticles_)
+	{
+		// 이펙트 및 사운드효과 발생
+		UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticles_, GetActorLocation(), GetActorRotation());
+	}
+
+
+	if (DeathSound_)
+		UGameplayStatics::PlaySoundAtLocation(this, DeathSound_, GetActorLocation());
+
+	if (DeathCameraShakeClass_)
+		GetWorld()->GetFirstPlayerController()->ClientPlayCameraShake(DeathCameraShakeClass_);
 }
 
 void ABasePawn::RotateTurret(FVector _LookAtTarget)

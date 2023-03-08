@@ -70,4 +70,15 @@ protected:
 		UPROPERTY(VisibleInstanceOnly)
 		int32 VisibleInstanceOnlyInt = 12;
 	*/
+
+	UPROPERTY(EditAnywhere)
+	UParticleSystem* DeathParticles_;
+
+	// 발사 사운드 이펙트
+	UPROPERTY(EditAnywhere)
+	class USoundBase* DeathSound_;
+
+	// 카메라 쉐이크
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UCameraShakeBase> DeathCameraShakeClass_;
 };

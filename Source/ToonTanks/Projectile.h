@@ -36,4 +36,24 @@ private:
 
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* _HitCom, AActor* _Other, UPrimitiveComponent* _OtherCom, FVector _normalImpulse, const FHitResult& _Hit);
+
+	// SpawnEmitter에서 사용하기 위한 파티클
+	UPROPERTY(EditAnywhere)
+	UParticleSystem* HitParticles_;
+
+	// 파티클 컴포넌트
+	UPROPERTY(VisibleAnywhere)
+	UParticleSystemComponent* TrailParticles_;
+
+	// 발사 사운드 이펙트
+	UPROPERTY(EditAnywhere)
+	class USoundBase* LaunchSound_;
+
+	// 타격 사운드 이펙트
+	UPROPERTY(EditAnywhere)
+	class USoundBase* HitSound_;
+
+	// 카메라 쉐이크
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UCameraShakeBase> HitCameraShakeClass_;
 };
