@@ -26,6 +26,14 @@ void ATower::Tick(float DeltaTime)
 
 }
 
+void ATower::HandleDestruction()
+{
+	// BasePawn의 함수 호출
+	Super::HandleDestruction();
+	
+	Destroy();
+}
+
 void ATower::CheckFireCondition()
 {
 	float Distance = FVector::Dist(GetActorLocation(), Tank_->GetActorLocation());

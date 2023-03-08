@@ -48,6 +48,8 @@ void AProjectile::OnHit(UPrimitiveComponent* _HitCom, AActor* _Other, UPrimitive
 	if (_Other != this && _Other != MyOwner && _Other != nullptr)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Hit On! >> %f"), Damage_);
+
+		// damage가 0이면 데미지 콜백은 호출되지 않음
 		UGameplayStatics::ApplyDamage(_Other, Damage_, tmpOwnerInstigator, this, DamageTypeClass);
 		Destroy();
 	}

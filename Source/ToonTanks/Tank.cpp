@@ -35,10 +35,23 @@ void ATank::Tick(float DeltaTime)
 		FHitResult HitResult;
 		PlayerController_->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
 
-		DrawDebugSphere(this->GetWorld(), HitResult.ImpactPoint, 50.f, 20, FColor::Red, false, -1.f);
+		//DrawDebugSphere(this->GetWorld(), HitResult.ImpactPoint, 50.f, 20, FColor::Red, false, -1.f);
 
 		RotateTurret(HitResult.ImpactPoint);
 	}
+}
+
+void ATank::HandleDestruction()
+{
+	Super::HandleDestruction();
+
+	// 플레이어이므로 Destroy하지 않고 숨김
+	// Destroy();
+
+	// 게임에서 액터를 숨김
+	SetActorHiddenInGame(true);
+	// Tick함수 무효화
+	SetActorTickEnabled(false);
 }
 
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

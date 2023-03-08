@@ -25,8 +25,15 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void HandleDestruction();
+
 	// Called to bind functionality to input
 	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	APlayerController* GetPlayerController() const
+	{
+		return PlayerController_;
+	}
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, category = "Components", meta = (AllowPrivateAccess = "true"))

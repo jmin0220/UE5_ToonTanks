@@ -19,6 +19,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void HandleDestruction();
 protected:
 	void RotateTurret(FVector _LookAtTarget);
 	void Fire();

@@ -35,6 +35,11 @@ void ABasePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
+void ABasePawn::HandleDestruction()
+{
+	// 이펙트 및 사운드효과 발생
+}
+
 void ABasePawn::RotateTurret(FVector _LookAtTarget)
 {
 	FVector ToTarget = _LookAtTarget - TurretMesh_->GetComponentLocation();
